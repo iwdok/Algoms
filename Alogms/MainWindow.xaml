@@ -1,0 +1,44 @@
+﻿<Window x:Class="Alogms.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Alogms"
+        mc:Ignorable="d"
+        Title="Курсовая работа по алгоритмам и анализу сложности. Шаповалов Андрей, Черноскутова Полина." Height="672.938" Width="890">
+    <Grid>
+        <GridSplitter HorizontalAlignment="Center" Height="33" Margin="0,609,0,0" VerticalAlignment="Top" Width="882" Background="#FFFFC0C0"/>
+        <GridSplitter HorizontalAlignment="Left" Height="470" Margin="0,139,0,0" VerticalAlignment="Top" Width="435" Background="#FFCADDFF"/>
+        <GridSplitter Height="470" Margin="0,139,0,0" VerticalAlignment="Top" Width="435" Background="#FFCADDFF"/>
+        <GridSplitter Height="139" VerticalAlignment="Top" Width="435" Margin="0"/>
+        <GridSplitter HorizontalAlignment="Left" Height="139" VerticalAlignment="Top" Width="435"/>
+        <TextBox HorizontalAlignment="Left" Height="55" Margin="56,10,0,0" TextWrapping="Wrap" Text="Элементы множества&#xD;&#xA;В качестве разделителя можно использовать пробел ,запятую или перенос строки" 
+                 VerticalAlignment="Top" Width="337" FontSize="14" TextAlignment="Center" BorderThickness="0" Background="#FFF0F0F0"/>
+        <Button x:Name="clearSet" Content="Удалить все элементы" HorizontalAlignment="Center" Margin="0,609,0,0" VerticalAlignment="Top" BorderThickness="0" 
+                FontSize="14" Height="23" Width="154" Background="#FFFF7070" Click="clearSet_Click"/>
+        <TextBox HorizontalAlignment="Left" Height="18" Margin="46,94,0,0" TextWrapping="Wrap" Text="От:" VerticalAlignment="Top" Width="23" BorderThickness="0" 
+                 Background="#FFF0F0F0"/>
+        <TextBox x:Name="startElement" HorizontalAlignment="Left" Height="23" Margin="69,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" BorderThickness="0" 
+                 Background="#FFD4D4D4" PreviewTextInput="OnPreviewTextInputDigits" DataObject.Pasting="OnPastingDigits" PreviewKeyDown="textBox_PreviewKeyDown" MaxLength="8"/>
+        <TextBox HorizontalAlignment="Left" Height="19" Margin="154,94,0,0" TextWrapping="Wrap" Text="До:" VerticalAlignment="Top" Width="25" BorderThickness="0" Background="#FFF0F0F0"/>
+        <TextBox x:Name="endElement" HorizontalAlignment="Left" Height="23" Margin="184,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" 
+                 Background="#FFD4D4D4" BorderThickness="0" PreviewTextInput="OnPreviewTextInputDigits" DataObject.Pasting="OnPastingDigits" PreviewKeyDown="textBox_PreviewKeyDown" MaxLength="8"/>
+        <Button x:Name="autofill" Content="Автозаполнение" HorizontalAlignment="Left" Margin="280,90,0,0" VerticalAlignment="Top" Width="103" Height="23" 
+                BorderThickness="0" Background="#FFA0B5FF" Click="autofill_Click"/>
+        <TextBox HorizontalAlignment="Right" Height="19" Margin="0,94,265,0" TextWrapping="Wrap" Text="Сумма подмножеств:" VerticalAlignment="Top" Width="124" BorderThickness="0" Background="#FFF0F0F0"/>
+        <TextBox x:Name="sumBox" HorizontalAlignment="Right" Height="23" Margin="0,90,140,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFD4D4D4" BorderThickness="0"
+                 PreviewTextInput="OnPreviewTextInputDigits" DataObject.Pasting="OnPastingDigits" PreviewKeyDown="textBox_PreviewKeyDown" MaxLength="8"/>
+        <Button x:Name="search" Content="Поиск" HorizontalAlignment="Right" Margin="0,90,50,0" VerticalAlignment="Top" Width="75" Height="23" BorderThickness="0" Background="#FFA0B5FF" Click="search_Click"/>
+        <TextBox HorizontalAlignment="Right" Height="24" Margin="0,42,86,0" TextWrapping="Wrap" Text="Подмножества с заданной суммой" VerticalAlignment="Top" Width="240" FontSize="14" 
+                 BorderThickness="0" Background="#FFF0F0F0"/>
+        <GridSplitter HorizontalAlignment="Center" Height="609" Margin="0" VerticalAlignment="Top" Width="12" Background="#FFD6D6D6"/>
+        <TextBox x:Name="set" HorizontalAlignment="Left" Height="460" Margin="10,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="420" BorderThickness="0"
+                 HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" PreviewTextInput="OnPreviewTextInput" DataObject.Pasting="OnPasting" AcceptsReturn="True"/>
+        <TextBox x:Name="subsets" HorizontalAlignment="Right" Height="430" Margin="0,144,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="420"
+                 HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+        <Button x:Name="clearElems" Content="Очистить элементы множества" HorizontalAlignment="Left" Margin="10,609,0,0" VerticalAlignment="Top" Width="193" Height="23" Background="#FFFF7070" BorderThickness="0" Click="clearElems_Click"/>
+        <Button x:Name="clearSubsets" Content="Очистить подмножества" HorizontalAlignment="Right" Margin="0,609,10,0" VerticalAlignment="Top" Width="146" Height="23" Background="#FFFF7070" BorderThickness="0" Click="clearSubsets_Click"/>
+        <TextBox x:Name="countSubsets" HorizontalAlignment="Left" Height="23" Margin="540,579,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <TextBlock HorizontalAlignment="Left" Margin="457,574,0,0" TextWrapping="Wrap" Text="Количество подмножеств:" VerticalAlignment="Top" Height="30" Width="83"/>
+    </Grid>
+</Window>
