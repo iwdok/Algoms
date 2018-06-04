@@ -92,20 +92,42 @@ namespace Alogms
             else
             {
                 string output;
-                foreach (var subset in subSetSum.Subsets)
+                if (subSetSum.Subsets.Count() <= 5000)
                 {
-                    output = "{ ";
-                    for (int i = 0; i < subset.Count(); i++)
+                    foreach (var subset in subSetSum.Subsets)
                     {
-                        output += subset[i].ToString();
-                        if (i != subset.Count() - 1)
+                        output = "{ ";
+                        for (int i = 0; i < subset.Count(); i++)
                         {
-                            output += ",";
+                            output += subset[i].ToString();
+                            if (i != subset.Count() - 1)
+                            {
+                                output += ",";
+                            }
+                            output += " ";
                         }
-                        output += " ";
+                        output += "}" + Environment.NewLine;
+                        subsets.AppendText(output);
                     }
-                    output += "}" + Environment.NewLine;
-                    subsets.AppendText(output);
+                }
+                else
+                {
+                    subsets.AppendText("Число подмножеств превышает 5000, будет выведены первые 5000 подмножеств" + Environment.NewLine);
+                    for (int i = 0; i <= 5000; i++)
+                    {
+                        output = "{ ";
+                        for (int j = 0; j < subSetSum.Subsets[i].Count(); j++)
+                        {
+                            output += subSetSum.Subsets[i][j].ToString();
+                            if (j != subSetSum.Subsets[i].Count() - 1)
+                            {
+                                output += ",";
+                            }
+                            output += " ";
+                        }
+                        output += "}" + Environment.NewLine;
+                        subsets.AppendText(output);
+                    }
                 }
                 countSubsets.Text = subSetSum.Subsets.Count().ToString();
                 subsets.ScrollToEnd();
@@ -123,7 +145,7 @@ namespace Alogms
             if (stringData == null || !stringData.All(IsDigits))
                 e.CancelCommand();
         }
-        
+
         private void OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !e.Text.All(IsGood);
