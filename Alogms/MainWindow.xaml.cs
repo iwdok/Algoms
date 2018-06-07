@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,7 +73,11 @@ namespace Alogms
 
         private void search_Click(object sender, RoutedEventArgs e)
         {
-            int sum = int.Parse(sumBox.Text);
+            if (!int.TryParse(sumBox.Text, out int sum))
+            {
+                MessageBox.Show("Сумма не может быть пустой");
+                return;
+            }
 
             var buf = set.Text.Split(new Char[] { ' ', ',', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
             int[] arraySet = new int[buf.Length];
@@ -81,24 +86,24 @@ namespace Alogms
             {
                 if (!int.TryParse(buf[i], out arraySet[i]))
                 {
-                    MessageBox.Show("Превышено максимально допустимое значение числа " + buf[i]);
+                    MessageBox.Show("Превышено максимально допустимое значение числа, лмбо допущена ошибка ввода " + buf[i]);
                     return;
                 }
             }
 
             subsets.Clear();
-            time.Clear();
 
             Stopwatch timer = new Stopwatch();
             timer.Restart();
+
             var subSetSum = new SubSetSum();
             subSetSum.Search(arraySet, sum);
+
             timer.Stop();
             TimeSpan ts = timer.Elapsed;
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:0000}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds);
-            time.AppendText(elapsedTime);
+            time.Text = String.Format("{0:00}:{1:00}:{2:00}.{3:0000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+
+            countSubsets.Text = subSetSum.Subsets.Count().ToString();
 
             if (subSetSum.Subsets.Count == 0 || subSetSum.Subsets[0].Count == 0)
             {
@@ -124,28 +129,29 @@ namespace Alogms
                         output += "}" + Environment.NewLine;
                         subsets.AppendText(output);
                     }
+                    subsets.ScrollToEnd();
                 }
                 else
                 {
-                    subsets.AppendText("Число подмножеств превышает 5000, будет выведены первые 5000 подмножеств" + Environment.NewLine);
-                    for (int i = 0; i <= 5000; i++)
+                    subsets.AppendText("Число подмножеств превышает 5000, подмножества буду записаны в текстовый файл output.txt");
+                    StreamWriter file = new StreamWriter(@"..\..\..\output.txt", false);
+                    foreach (var subset in subSetSum.Subsets)
                     {
                         output = "{ ";
-                        for (int j = 0; j < subSetSum.Subsets[i].Count(); j++)
+                        for (int i = 0; i < subset.Count(); i++)
                         {
-                            output += subSetSum.Subsets[i][j].ToString();
-                            if (j != subSetSum.Subsets[i].Count() - 1)
+                            output += subset[i].ToString();
+                            if (i != subset.Count() - 1)
                             {
                                 output += ",";
                             }
                             output += " ";
                         }
                         output += "}" + Environment.NewLine;
-                        subsets.AppendText(output);
+                        file.WriteLine(output);
                     }
+                    file.Close();
                 }
-                countSubsets.Text = subSetSum.Subsets.Count().ToString();
-                subsets.ScrollToEnd();
             }
         }
 

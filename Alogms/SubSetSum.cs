@@ -4,32 +4,32 @@ namespace Alogms
 {
     internal class SubSetSum
     {
-        public List<List<int>> Subsets { get; private set; }
+        public List<List<int>> Subsets { get; private set; } // список подмножеств
 
         private bool[,] solution = null; // матрица
         private int[] set = null;
 
-        public void Search(int[] set, int sum)
+        public void Search(int[] set, int sum) // начало поиска
         {
-            Subsets = new List<List<int>>();
-            this.set = set;
+            Subsets = new List<List<int>>(); // инициализвания списка подмножеств
+            this.set = set; // взятие элементов
 
-            if (set.Length == 0 || sum < 0)
+            if (set.Length == 0 || sum < 0) // если элементов нет либо сумма меньше нуля - выход
             {
                 return;
             }
 
-            BuildingSolution(sum);
+            BuildingSolution(sum); // построние матрицы 
 
-            if (solution[set.Length - 1, sum] == false)
+            if (solution[set.Length - 1, sum] == false) // если решений не было найдено
             {
                 return;
             }
-            
-            List<int> p = new List<int>();
+
+            List<int> p = new List<int>(); // инициализация списка
             SubsetsRec(set.Length - 1, sum, p);
         }
-        
+
         private void BuildingSolution(int sum)
         {
             solution = new bool[set.Length, sum + 1];
@@ -46,9 +46,10 @@ namespace Alogms
                     if (i != 0)
                     {
                         solution[i, j] = solution[i - 1, j];
-
                         if (solution[i, j] == false && j >= set[i])
+                        {
                             solution[i, j] = solution[i, j] || solution[i - 1, j - set[i]];
+                        }
                     }
                     else
                     {
