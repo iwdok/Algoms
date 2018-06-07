@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,7 +39,12 @@ namespace Alogms
         private void clearSet_Click(object sender, RoutedEventArgs e)
         {
             set.Clear();
+            time.Clear();
+            startElement.Clear();
+            endElement.Clear();
+            sumBox.Clear();
             subsets.Clear();
+            countSubsets.Clear();
         }
 
         private void autofill_Click(object sender, RoutedEventArgs e)
@@ -81,9 +87,18 @@ namespace Alogms
             }
 
             subsets.Clear();
+            time.Clear();
 
+            Stopwatch timer = new Stopwatch();
+            timer.Restart();
             var subSetSum = new SubSetSum();
             subSetSum.Search(arraySet, sum);
+            timer.Stop();
+            TimeSpan ts = timer.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:0000}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds);
+            time.AppendText(elapsedTime);
 
             if (subSetSum.Subsets.Count == 0 || subSetSum.Subsets[0].Count == 0)
             {

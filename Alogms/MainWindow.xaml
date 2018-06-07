@@ -40,5 +40,7 @@
         <Button x:Name="clearSubsets" Content="Очистить подмножества" HorizontalAlignment="Right" Margin="0,609,10,0" VerticalAlignment="Top" Width="146" Height="23" Background="#FFFF7070" BorderThickness="0" Click="clearSubsets_Click"/>
         <TextBox x:Name="countSubsets" HorizontalAlignment="Left" Height="23" Margin="540,579,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
         <TextBlock HorizontalAlignment="Left" Margin="457,574,0,0" TextWrapping="Wrap" Text="Количество подмножеств:" VerticalAlignment="Top" Height="30" Width="83"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,574,130,0" TextWrapping="Wrap" Text="Времени затрачено:" VerticalAlignment="Top" Height="30" Width="78"/>
+        <TextBox x:Name="time" HorizontalAlignment="Right" Height="23" Margin="0,579,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115" IsReadOnly="True"/>
     </Grid>
 </Window>
