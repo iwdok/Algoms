@@ -50,7 +50,6 @@ namespace Alogms
 
         private void autofill_Click(object sender, RoutedEventArgs e)
         {
-            set.Clear();
 
             int startEl = int.Parse(startElement.Text);
             int endEl = int.Parse(endElement.Text);
