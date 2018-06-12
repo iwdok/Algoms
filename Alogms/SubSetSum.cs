@@ -32,28 +32,28 @@ namespace Alogms
 
         private void BuildingSolution(int sum)
         {
-            solution = new bool[set.Length, sum + 1];
+            solution = new bool[set.Length, sum + 1]; // объявление матрицы кол-во строк = кол-ву чисел в множестве, а столбцов = заданной сумме+1
 
-            for (int i = 0; i < set.Length; i++)
+            for (int i = 0; i < set.Length; i++) // заполнение первого столбца значениями true
             {
                 solution[i, 0] = true;
             }
 
-            for (int i = 0; i < set.Length; i++)
+            for (int i = 0; i < set.Length; i++) // проход по всей матрице без первого столбца
             {
-                for (int j = 1; j <= sum; j++)
+                for (int j = 1; j <= sum; j++) // проход по строке со второй позиции
                 {
                     if (i != 0)
                     {
-                        solution[i, j] = solution[i - 1, j];
-                        if (solution[i, j] == false && j >= set[i])
+                        solution[i, j] = solution[i - 1, j]; // присваиваем значение ячейки на строку выше
+                        if (solution[i, j] == false && j >= set[i]) // если в ячейке значение false и индекц текущего столбка меньше значения i-ого элемента входного массива
                         {
-                            solution[i, j] = solution[i, j] || solution[i - 1, j - set[i]];
+                            solution[i, j] = solution[i, j] || solution[i - 1, j - set[i]]; // значение ячейки равно или самой себе, или значению в строке выше и номер столбка равен текущему индексу минус занчение i-ого элемента входного массива
                         }
                     }
-                    else
+                    else // первая строка
                     {
-                        if (j == set[i])
+                        if (j == set[i]) // если номер текущего столбца == значению нулевого элемента массива чисел
                         {
                             solution[i, j] = true;
                         }
