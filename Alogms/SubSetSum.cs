@@ -66,31 +66,31 @@ namespace Alogms
             }
         }
 
-        private void SubsetsRec(int i, int sum, List<int> p)
+        private void SubsetsRec(int i, int sum, List<int> subset)
         {
             if (i == 0 && sum != 0 && solution[0, sum])
             {
-                p.Add(set[i]);
-                Subsets.Add(p);
+                subset.Add(set[i]);
+                Subsets.Add(subset);
                 return;
             }
 
             if (i == 0 && sum == 0)
             {
-                Subsets.Add(p);
+                Subsets.Add(subset);
                 return;
             }
 
             if (i != 0 && solution[i - 1, sum])
             {
-                List<int> b = p.GetRange(0, p.Count);
-                SubsetsRec(i - 1, sum, b);
+                List<int> recreate = subset.GetRange(0, subset.Count);
+                SubsetsRec(i - 1, sum, recreate);
             }
 
             if (i != 0 && sum >= set[i] && solution[i - 1, sum - set[i]])
             {
-                p.Add(set[i]);
-                SubsetsRec(i - 1, sum - set[i], p);
+                subset.Add(set[i]);
+                SubsetsRec(i - 1, sum - set[i], subset);
             }
         }
     }
