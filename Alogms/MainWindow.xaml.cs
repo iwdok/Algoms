@@ -50,9 +50,16 @@ namespace Alogms
 
         private void autofill_Click(object sender, RoutedEventArgs e)
         {
-
-            int startEl = int.Parse(startElement.Text);
-            int endEl = int.Parse(endElement.Text);
+            if (!int.TryParse(startElement.Text, out int startEl))
+            {
+                MessageBox.Show("Начальный элемент не указан");
+                return;
+            }
+            if (!int.TryParse(endElement.Text, out int endEl))
+            {
+                MessageBox.Show("Конечный элемент не указан");
+                return;
+            }
             if (startEl <= endEl)
             {
                 for (int i = startEl; i <= endEl; i++)
