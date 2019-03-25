@@ -1,5 +1,5 @@
 # Subset-Problem calculator
-This program searches for all subsets of given number, whose sum is equal to a given number
+This program searches for all subsets from given numbers, whose sum is equal to a given number
 
 ###  **Used: **
 - C#
