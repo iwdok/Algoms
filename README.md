@@ -1,7 +1,8 @@
-# Subset-Problem
-The program searches for all subsets whose sum is equal to a given number 
+# Subset-Problem С# WPF
+This program searches for all subsets of given number, whose sum is equal to a given number
 
-Used: C#/
-      WPF
+###  **Used: **
+- C#
+- WPF
 
-Handle 2 000 000 combinations
+###### Handle ~2 000 000 combinations
