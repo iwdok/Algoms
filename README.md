@@ -1,4 +1,4 @@
-# Subset-Problem С# WPF
+# Subset-Problem calculator
 This program searches for all subsets of given number, whose sum is equal to a given number
 
 ###  **Used: **
